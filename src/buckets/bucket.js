@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import timeStore from '../store/TimeStore';
 import { useCountdown } from "../hooks/useCountdown";
+import Button from "../components/Button/Button";
+import Container from "../components/Container/Container";
+import Typography from "../components/Typography/Typography";
 
 const padTime = (time) => time.toString().padStart(2, "0");
 export default function Bucket() {
@@ -38,16 +41,6 @@ export default function Bucket() {
         start,
         restart,
     } = useCountdown(INITIAL_VALUES);
-
-    // should you prefer to execute certain in the component when time is expired fire the 'isOver' as a callback
-    // const {
-    //     remainingTime: { seconds, minutes },
-    //     setter: { setMinutes, setSeconds },
-    //     stop,
-    //     start,
-    //     restart,
-    // } = useCountdown(INITIAL_VALUES, () => isOver());
-
     const handleStart = () => {
         start();
         timeStore.sendData({ isrunning: true });
@@ -65,24 +58,29 @@ export default function Bucket() {
     };
     return (
         <>
-            <h1>Inside Comp1</h1>
-            <h1 style={{ color: "#fff" }}>
-                {padTime(minutes)} : {padTime(seconds)}
-            </h1>
+            <Container>
+                <Typography>Inside Bucket Component</Typography>
+            </Container>
+            <Container>
+                <Typography>{padTime(minutes)}</Typography>
+                <Typography>{padTime(seconds)}</Typography>
+            </Container>
+            <Container>
+                <Button disabled={!timer.isrunning} onClick={handleStop} name="stop">
+                    Stop
+        </Button>
+                <Button
+                    disabled={timer.isrunning || (!minutes && !seconds) || (!minutes && !seconds)}
+                    onClick={handleStart}
+                    name="start"
+                >
+                    Start
+        </Button>
+                <Button onClick={handleRestart} name="Restart">
+                    Restart
+        </Button>
+            </Container>
 
-            <button disabled={!timer.isrunning} onClick={handleStop} name="stop">
-                Stop
-        </button>
-            <button
-                disabled={timer.isrunning || (!minutes && !seconds) || (!minutes && !seconds)}
-                onClick={handleStart}
-                name="start"
-            >
-                Start
-        </button>
-            <button onClick={handleRestart} name="Restart">
-                Restart
-        </button>
         </>
     )
 }

@@ -1,6 +1,5 @@
 import "./styles.css";
 import { useState, useEffect } from 'react';
-import Input from "./components/Input/Input";
 import Button from "./components/Button/Button";
 import Container from "./components/Container/Container";
 import Typography from "./components/Typography/Typography";
@@ -16,7 +15,7 @@ export default function App() {
   }, []);
 
   const INITIAL_VALUES = [timer.INITIAL_VALUES[0], timer.INITIAL_VALUES[1]];
-  
+
   const singleFire = (function (func) {
     let executed = false;
     return function (func) {
@@ -75,21 +74,12 @@ export default function App() {
   return (
     <div className="App">
       <Container>
-        <Input
-          disabled={timer.isrunning}
-          value={padTime(minutes)}
-          name="minute"
-          onChange={handleInputChange}
-        />
-
-        <Input
-          disabled={timer.isrunning}
-          value={padTime(seconds)}
-          name="second"
-          onChange={handleInputChange}
-        />
+        <Typography>Inside App Component</Typography>
       </Container>
-
+      <Container>
+        <Typography>{padTime(minutes)}</Typography>
+        <Typography>{padTime(seconds)}</Typography>
+      </Container>
       <Container>
         <Typography>MINUTE</Typography>
         <Typography>SECOND</Typography>
