@@ -6,8 +6,6 @@ import Typography from "./components/Typography/Typography";
 import { useCountdown } from "./hooks/useCountdown";
 import timeStore from './store/TimeStore';
 
-
-
 export default function App() {
   const [timer, setTimer] = useState(timeStore.initialState);
   useEffect(() => {
