@@ -1,0 +1,28 @@
+.button {
+  color: white;
+  padding: 10px 50px;
+  margin: 10px;
+  border: 2px solid white;
+  font-family: "Franklin Gothic Regular", "Arial Narrow", Arial, sans-serif;
+  box-shadow: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+  outline: none;
+}
+
+.button:hover {
+  background-color: white;
+  color: black;
+}
+
+.disabled-button {
+  pointer-events: none;
+  background-color: rgb(73, 73, 73);
+  border: 2px solid darkgray;
+  color: gray;
+}
+
+.disabled-button:hover {
+  color: white;
+}
